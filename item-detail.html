@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Item Detail</title>
+
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <h4 class="food_name">Ingredient</h4>
+    <h4 id="item-id"></h4>
+    <table>
+      <tr>
+        <th>What</th>
+        <th>How much?</th>
+      </tr>
+    </table>
+
+    <script>
+      // window.onload = localStorage.getItem("itemdetail");
+      const itemdetail = JSON.parse(localStorage.getItem("itemdetail"));
+      console.log(itemdetail);
+      const table = document.querySelector("table");
+      const foodName = document.querySelector(".food_name");
+      const itemId = document.querySelector("#item-id");
+      foodName.innerText = `${itemdetail.food_name}`;
+      itemId.innerText = `Item ID: ${itemdetail._id}`;
+
+      const html = `
+      <tr>
+      <td>Protein</td>
+      <td>${itemdetail.protein}</td>
+    </tr>
+    <tr>
+      <td>Carbohydrate</td>
+      <td>${itemdetail.carbohydrate}</td>
+    </tr>
+    <tr>
+      <td>&emsp;Of Which Sugars</td>
+      <td>${itemdetail.sugars}</td>
+    </tr>
+    <tr>
+      <td>Energy (kcal)</td>
+      <td>${itemdetail.energy_kcal}</td>
+    </tr>
+    <tr>
+      <td>Fat</td>
+      <td>${itemdetail.fat}</td>
+    </tr>
+    <tr>
+      <td>Saturates</td>
+      <td>${itemdetail.saturated_fat}</td>
+    </tr>
+    <tr>
+      <td>Fibre</td>
+      <td>${itemdetail.fibre}</td>
+    </tr>
+    <tr>
+      <td>Salt (Sodium)</td>
+      <td>${itemdetail.sodium}</td>
+    </tr>
+      `;
+      table.insertAdjacentHTML("beforeend", html);
+    </script>
+  </body>
+</html>
