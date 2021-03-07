@@ -6,6 +6,7 @@ const itemDetail = document.querySelector(".item-detail");
 const resultFound = document.querySelector(".total-results");
 
 // pagination
+const pagination = document.querySelector(".pagination");
 const first = document.querySelector(".first");
 const next = document.querySelector(".next");
 const previous = document.querySelector(".previous");
@@ -16,11 +17,11 @@ const totalPage = document.querySelector(".total-page");
 let localResult = [];
 let page = 0;
 let current_page = 1;
-let items_per_page = 10;
+let items_per_page = 20;
 let total_page = 0;
-let last_page = 0;
 
 function displayResult(data, items) {
+  // resultList.innerHTML = "";
   if (data.length > items) {
     data.slice(page, items).forEach((item) => {
       resultList.insertAdjacentHTML(
@@ -28,6 +29,8 @@ function displayResult(data, items) {
         `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
       );
     });
+
+    pagination.style.display = "flex";
   } else {
     data.forEach((item) => {
       resultList.insertAdjacentHTML(
@@ -35,7 +38,9 @@ function displayResult(data, items) {
         `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
       );
     });
+    pagination.style.display = "none";
   }
+  currentPage.innerText = current_page;
   total_page = Math.ceil(data.length / items_per_page);
   totalPage.innerText = total_page;
 }
@@ -45,6 +50,8 @@ const mainUrl = "http://localhost:3000/ingredients/";
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   resultList.innerHTML = "";
+  current_page = 1;
+  page = 0;
 
   const text = searchTerm.value.trim();
 
@@ -56,33 +63,26 @@ form.addEventListener("submit", (e) => {
     data.reverse();
 
     localResult = [...data];
-    console.log(localResult);
+    // console.log(localResult);
 
     resultFound.style.display = "block";
     resultFound.innerText = `Found: ${data.length}`;
 
-    displayResult(localResult, 10);
-
-    // data.forEach((item) => {
-    //   resultList.insertAdjacentHTML(
-    //     "afterbegin",
-    //     `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
-    //   );
-    // });
+    displayResult(localResult, items_per_page);
 
     searchTerm.value = "";
     searchTerm.focus();
   };
 
   result();
+  first.disabled = previous.disabled = true;
+  last.disabled = next.disabled = false;
 });
 
 function getItemDetail(id) {
   localStorage.getItem("itemdetail")
     ? localStorage.removeItem("itemdetail")
     : null;
-
-  console.log(id);
 
   const url = `${mainUrl}item/${id}`;
 
@@ -93,78 +93,76 @@ function getItemDetail(id) {
     localStorage.setItem("itemdetail", JSON.stringify(data));
   };
   detail();
-  setInterval(() => (window.location.href = "item-detail.html"), 700);
+  setInterval(() => (window.location.href = "item-detail.html"), 500);
 }
 
-displayResult(localResult, 10);
-
 next.addEventListener("click", () => {
-  page === localResult.length - 10 ? (page = 0) : (page += 10);
   resultList.innerHTML = "";
-  localResult.slice(page, page + 10).forEach((item) => {
-    resultList.insertAdjacentHTML(
-      "afterbegin",
-      `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
-    );
+  page += items_per_page;
+  localResult.slice(page, page + items_per_page).forEach((item) => {
+    itemDisplay(item);
   });
   current_page += 1;
-  console.log(current_page);
   currentPage.innerText = current_page;
-  disabledBtn();
-});
 
-previous.addEventListener("click", () => {
-  page === 0 ? (page = localResult.length - 10) : (page -= 10);
-  resultList.innerHTML = "";
-
-  localResult.slice(page, page + 10).forEach((item) => {
-    resultList.insertAdjacentHTML(
-      "afterbegin",
-      `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
-    );
-  });
-  current_page -= 1;
-  console.log(current_page);
-  currentPage.innerText = current_page;
-  disabledBtn();
+  if (current_page === total_page) {
+    next.disabled = true;
+    last.disabled = true;
+  }
+  first.disabled = false;
+  previous.disabled = false;
 });
 
 first.addEventListener("click", () => {
-  page = 0;
   resultList.innerHTML = "";
-
-  localResult.slice(page, page + 10).forEach((item) => {
-    resultList.insertAdjacentHTML(
-      "afterbegin",
-      `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
-    );
+  page = 0;
+  localResult.slice(page, page + items_per_page).forEach((item) => {
+    itemDisplay(item);
   });
   current_page = 1;
-  console.log(current_page);
   currentPage.innerText = current_page;
-  disabledBtn();
+  first.disabled = true;
+  previous.disabled = true;
+  next.disabled = false;
+  last.disabled = false;
 });
 
 last.addEventListener("click", () => {
-  page = localResult.length - 10;
   resultList.innerHTML = "";
-
-  localResult.slice(page, page + 10).forEach((item) => {
-    resultList.insertAdjacentHTML(
-      "afterbegin",
-      `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
-    );
+  page = localResult.length - (localResult.length % items_per_page);
+  localResult.slice(page).forEach((item) => {
+    itemDisplay(item);
   });
   current_page = total_page;
-
-  console.log(current_page);
   currentPage.innerText = current_page;
-  disabledBtn();
+
+  next.disabled = true;
+  last.disabled = true;
+  first.disabled = false;
+  previous.disabled = false;
 });
 
-function disabledBtn() {
-  current_page === 1 ? (previous.disabled = true) : (previous.disabled = false);
-  current_page === total_page
-    ? (next.disabled = true)
-    : (next.disabled = false);
+previous.addEventListener("click", () => {
+  resultList.innerHTML = "";
+  page -= items_per_page;
+  localResult.slice(page, page + items_per_page).forEach((item) => {
+    itemDisplay(item);
+  });
+  current_page -= 1;
+  currentPage.innerText = current_page;
+
+  if (current_page === 1) {
+    first.disabled = true;
+    previous.disabled = true;
+  }
+
+  next.disabled = false;
+  last.disabled = false;
+});
+
+function itemDisplay(item) {
+  resultList.insertAdjacentHTML(
+    "afterbegin",
+    `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
+  );
 }
