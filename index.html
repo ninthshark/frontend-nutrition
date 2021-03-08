@@ -10,26 +10,28 @@
   <body>
     <div class="container">
       <nav>
-        <a href="/">Home</a>
-        <a href=""></a>
+        <ul>
+          <li><a href="#">API</a></li>
+          <li><a href="about">About</a></li>
+        </ul>
       </nav>
-      <h1>Search Ingredients</h1>
       <section class="search-section">
-        <form method="get">
-          <!-- <label for="search">Search: </label> -->
-          <div class="search-box">
+        <div class="logo">
+          <img src="./image/foodle-logo.png" alt="foodle logo" />
+        </div>
+        <form>
+          <div class="bar">
             <input
               type="text"
-              id="search"
+              class="searchbar"
               name="search"
-              placeholder="Food name, ie banana"
+              placeholder="Search food or ingredients"
             />
-            <button type="submit">Search</button>
           </div>
         </form>
       </section>
       <section class="results">
-        <h3 class="total-results">Found:</h3>
+        <p class="total-results">Found:</p>
         <ul class="list"></ul>
         <div class="pagination">
           <button class="first">first</button>
@@ -42,6 +44,18 @@
             >
           </div>
         </div>
+      </section>
+      <section class="info">
+        <h5>Data Values</h5>
+        <p>
+          Nutrient values are expressed per 100g of the food except in the case
+          of alcoholic beverages which are presented per 100ml.
+        </p>
+        <p>A trace value for a nutrient is represented by Tr.</p>
+        <p>
+          Where a nutrient is present in significant quantities, but there is no
+          reliable information on the amount, the value is represented by N.
+        </p>
       </section>
     </div>
     <script src="script.js"></script>

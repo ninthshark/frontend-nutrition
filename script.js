@@ -1,4 +1,4 @@
-const searchTerm = document.getElementById("search");
+const searchTerm = document.querySelector(".searchbar");
 const submitBtn = document.querySelector("button");
 const form = document.querySelector("form");
 const resultList = document.querySelector(".list");
@@ -21,22 +21,15 @@ let items_per_page = 20;
 let total_page = 0;
 
 function displayResult(data, items) {
-  // resultList.innerHTML = "";
   if (data.length > items) {
     data.slice(page, items).forEach((item) => {
-      resultList.insertAdjacentHTML(
-        "afterbegin",
-        `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
-      );
+      itemDisplay(item);
     });
 
     pagination.style.display = "flex";
   } else {
     data.forEach((item) => {
-      resultList.insertAdjacentHTML(
-        "afterbegin",
-        `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
-      );
+      itemDisplay(item);
     });
     pagination.style.display = "none";
   }
@@ -62,15 +55,15 @@ form.addEventListener("submit", (e) => {
     const data = await response.json();
     data.reverse();
 
+    // copy response locally
     localResult = [...data];
-    // console.log(localResult);
 
     resultFound.style.display = "block";
-    resultFound.innerText = `Found: ${data.length}`;
+    resultFound.innerText = `About: ${data.length} results`;
 
     displayResult(localResult, items_per_page);
 
-    searchTerm.value = "";
+    // searchTerm.value = "";
     searchTerm.focus();
   };
 
@@ -163,6 +156,11 @@ previous.addEventListener("click", () => {
 function itemDisplay(item) {
   resultList.insertAdjacentHTML(
     "afterbegin",
-    `<li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>`
+    `<div class="item-list">
+    <li class="item-detail" ><span onclick="getItemDetail('${item._id}')">${item.food_name}</span></li>
+    <div class="item-list-info">
+    <span class="info-nutrient">Per 100g - Calories: ${item.energy_kcal}kcal | Fat: ${item.fat}g | Carbs: ${item.carbohydrate}g | Protein: ${item.protein}g</span>
+    </div>
+    </div>`
   );
 }

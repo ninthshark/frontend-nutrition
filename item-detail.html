@@ -5,25 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Item Detail</title>
-
-    <style>
-      table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      td,
-      th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-      }
-
-      tr:nth-child(even) {
-        background-color: #dddddd;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <a href="/">Home</a>
@@ -49,15 +31,15 @@
       const html = `
       <tr>
       <td>Protein</td>
-      <td>${itemdetail.protein}</td>
+      <td>${itemdetail.protein}<span class="unit">g</span></td>
     </tr>
     <tr>
       <td>Carbohydrate</td>
-      <td>${itemdetail.carbohydrate}</td>
+      <td>${itemdetail.carbohydrate}<span class="unit">g</span></td>
     </tr>
     <tr>
       <td>&emsp;Of Which Sugars</td>
-      <td>${itemdetail.sugars}</td>
+      <td>${itemdetail.sugars}<span class="unit">g</span></td>
     </tr>
     <tr>
       <td>Energy (kcal)</td>
@@ -65,19 +47,19 @@
     </tr>
     <tr>
       <td>Fat</td>
-      <td>${itemdetail.fat}</td>
+      <td>${itemdetail.fat}<span class="unit">g</span></td>
     </tr>
     <tr>
       <td>Saturates</td>
-      <td>${itemdetail.saturated_fat}</td>
+      <td>${itemdetail.saturated_fat}<span class="unit">g</span></td>
     </tr>
     <tr>
       <td>Fibre</td>
-      <td>${itemdetail.fibre}</td>
+      <td>${itemdetail.fibre}<span class="unit">g</span></td>
     </tr>
     <tr>
-      <td>Salt (Sodium)</td>
-      <td>${itemdetail.sodium}</td>
+      <td>Sodium</td>
+      <td>${itemdetail.sodium}<span class="unit">mg</span></td>
     </tr>
       `;
       table.insertAdjacentHTML("beforeend", html);
