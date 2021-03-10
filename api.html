@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UK Food Nutrients Data</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container api-container">
+      <nav>
+        <div class="nav-item logo">
+          <a href="/">
+            <img style="width: 100%" src="./image/foodle-logo.png" alt="logo" />
+          </a>
+        </div>
+        <div class="nav-wrapper">
+          <div class="nav-item"><a href="/login">LogIn</a></div>
+          <div class="nav-item"><a href="/api.html">API</a></div>
+          <div class="nav-item"><a href="/about">About</a></div>
+        </div>
+      </nav>
+    
+    <section class="api-endpoint">
+        <div class="api-info">
+
+            <h1>UK Food Nutrients Data API</h1>
+            <p>A free and simple UK food data api, extracted and converted from 
+                <a href="https://www.gov.uk/government/publications/composition-of-foods-integrated-dataset-cofid">"UK Composition of Foods Integrated Dataset (CoFID)"</a> for the purpose of learning.</p>
+        </div>
+        
+        <h1>How to use API</h1>
+        <div class="api-search-by-name">
+
+            <h4>Seach by name</h5>
+            <p>http://localhost:3000/api/json/v0.1/seach/<span>[food or ingredient name]</span></p>
+            <p>Example: if you are looking for "banana"</p>
+            <p>http://localhost:3000/api/json/v0.1/search/<span class="api-search">banana</span></p>
+            <div class="api-search-result">
+                <img src="./image/api-screencap.png" alt="api result">
+            </div>
+        </div>
+        <div class="api-search-by-id">
+
+            <h4>Lookup by id</h4>
+            <p>https://ancient-lowlands-31543.herokuapp.com/api/json/v0.1/search/id/<span>[item id]</span></p>
+            <p>Example: if you are looking for known item id </p>
+            <p>https://ancient-lowlands-31543.herokuapp.com/api/json/v0.1/search/id/<span class="api-search">59e48ff4dffa3f247e37f179</span></p>
+        </div>
+    </section>
+    <section class="info">
+        <h5>Data Values</h5>
+        <p>
+          Nutrient values are expressed per 100g of the food except in the case
+          of alcoholic beverages which are presented per 100ml.
+        </p>
+        <p>A trace value for a nutrient is represented by Tr.</p>
+        <p>
+          Where a nutrient is present in significant quantities, but there is no
+          reliable information on the amount, the value is represented by N.
+        </p>
+      </section>
+    <footer>
+        <div>Created by Kiattisak Dujda &#169;2021</div>
+        <div class="contact">
+            <div class="email"><a href="mailto:kiattisak.dujda@gmail.com">kiattisak.dujda@gmail.com</a></div>
+            <div class="github"><a href="https://github.com/ninthshark">Github</a></div>
+            <div class="linkedin"><a href="https://www.linkedin.com/in/kiattisak-dujda/">LinkedIn</a></div>
+        </div>
+    </footer>
+</div>
+  </body>
+</html>

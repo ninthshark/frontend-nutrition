@@ -38,7 +38,8 @@ function displayResult(data, items) {
   totalPage.innerText = total_page;
 }
 
-const mainUrl = "http://localhost:3000/ingredients/";
+const mainUrl =
+  "https://ancient-lowlands-31543.herokuapp.com/api/json/v0.1/search/";
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -77,7 +78,7 @@ function getItemDetail(id) {
     ? localStorage.removeItem("itemdetail")
     : null;
 
-  const url = `${mainUrl}item/${id}`;
+  const url = `${mainUrl}id/${id}`;
 
   const detail = async () => {
     const response = await fetch(url);
@@ -86,7 +87,10 @@ function getItemDetail(id) {
     localStorage.setItem("itemdetail", JSON.stringify(data));
   };
   detail();
-  setInterval(() => (window.location.href = "item-detail.html"), 500);
+  setInterval(() => {
+    // const itemDetail = JSON.parse(localStorage.getItem("itemdetail"));
+    window.location.href = `item-detail.html`;
+  }, 500);
 }
 
 next.addEventListener("click", () => {

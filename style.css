@@ -1,7 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Noto+Sans&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 ul li {
@@ -11,6 +17,41 @@ ul li {
 .container {
   max-width: 900px;
   margin: auto;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+}
+
+nav .nav-item {
+  width: 5rem;
+  padding: 7px 15px;
+  background-color: rgb(32 58 73);
+  text-align: center;
+  margin-left: 5px;
+}
+
+nav .logo {
+  margin-left: 0;
+}
+nav .nav-wrapper {
+  display: flex;
+}
+
+nav .nav-item:hover {
+  background-color: #384f5c;
+}
+
+/* nav .nav-item:last-child {
+  margin-right: 5px;
+} */
+
+nav .nav-item a {
+  text-decoration: none;
+  color: white;
 }
 
 .search-section {
@@ -65,7 +106,7 @@ ul .item-list {
 ul .item-list .item-detail {
   margin-bottom: 8px;
   font-size: large;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   color: rgb(80, 80, 247);
 }
@@ -128,8 +169,8 @@ button[type="submit"] {
 
 .bar {
   margin: 0 auto;
-  /* width: 575px; */
-  max-width: 50vw;
+  width: 575px;
+  /* max-width: 50vw; */
   border-radius: 30px;
   border: 1px solid #dcdcdc;
   padding-left: 20px;
@@ -145,8 +186,8 @@ button[type="submit"] {
 .searchbar {
   height: 45px;
   border: none;
-  /* width: 500px; */
-  max-width: 50vw;
+  width: 500px;
+  max-width: 100%;
   font-size: 16px;
   outline: none;
 }
@@ -197,6 +238,10 @@ tr:nth-child(even) {
   .bar {
     max-width: 60vw;
   }
+
+  .searchbar {
+    max-width: 50vw;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -208,4 +253,34 @@ tr:nth-child(even) {
   ul .item-list .item-list-info {
     font-size: 16px;
   }
+}
+
+/* CSS for API */
+.api-endpoint {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 2rem;
+}
+
+.api-info,
+.api-search-by-name,
+.api-search-by-id {
+  margin: 2rem 0;
+}
+
+.api-endpoint span {
+  font-style: italic;
+  font-size: 14px;
+  color: rgb(132, 132, 255);
+}
+
+/* footer */
+footer {
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5vh;
+  line-height: 1.5rem;
 }
