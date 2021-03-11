@@ -38,8 +38,8 @@ function displayResult(data, items) {
   totalPage.innerText = total_page;
 }
 
-const mainUrl =
-  "https://ancient-lowlands-31543.herokuapp.com/api/json/v0.1/search/";
+const baseUrl =
+  "https://ancient-lowlands-31543.herokuapp.com/api/json/v0.1/search?";
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -50,7 +50,7 @@ form.addEventListener("submit", (e) => {
   const text = searchTerm.value.trim();
 
   const result = async () => {
-    const response = await fetch(`${mainUrl}${text}`);
+    const response = await fetch(`${baseUrl}name=${text}`);
     const data = await response.json();
     data.reverse();
 
@@ -76,7 +76,7 @@ function getItemDetail(id) {
     ? localStorage.removeItem("itemdetail")
     : null;
 
-  const url = `${mainUrl}id/${id}`;
+  const url = `${baseUrl}id=${id}`;
 
   const detail = async () => {
     const response = await fetch(url);
