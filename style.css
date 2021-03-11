@@ -8,6 +8,7 @@
 
 body {
   font-family: "Noto Sans JP", sans-serif;
+  background-color: blanchedalmond;
 }
 
 ul li {
@@ -16,6 +17,7 @@ ul li {
 
 .container {
   max-width: 900px;
+  /* height: 100vh; */
   margin: auto;
 }
 
@@ -24,6 +26,9 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 3rem;
+  background-color: #395f75;
+  padding: 0 8px;
+  margin: 8px 0;
 }
 
 nav .nav-item {
@@ -153,16 +158,6 @@ ul .item-list .item-detail:hover {
   color: rgb(51, 51, 255);
 }
 
-/* input[type="text"] {
-  border-radius: 30px;
-  border-width: 1px;
-  border-color: rgb(167, 167, 167);
-}
-
-input[type="text"]:focus {
-  outline: none;
-} */
-
 button[type="submit"] {
   border-radius: 30px;
 }
@@ -170,7 +165,6 @@ button[type="submit"] {
 .bar {
   margin: 0 auto;
   width: 575px;
-  /* max-width: 50vw; */
   border-radius: 30px;
   border: 1px solid #dcdcdc;
   padding-left: 20px;
@@ -192,9 +186,15 @@ button[type="submit"] {
   outline: none;
 }
 
-/* .search-wrapper {
-  border: 1px solid black;
-} */
+.info-block,
+blockquote {
+  width: 60%;
+  text-align: center;
+  margin: 2rem auto;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 1.4rem;
+}
 
 .info {
   background-color: rgb(224, 224, 224);
@@ -276,11 +276,52 @@ tr:nth-child(even) {
   color: rgb(132, 132, 255);
 }
 
+@media screen and (max-width: 450px) {
+  .api-endpoint p {
+    font-size: 14px;
+  }
+}
+
 /* footer */
 footer {
-  height: 10vh;
+  height: 120px;
   display: flex;
   justify-content: space-around;
-  margin-top: 5vh;
+  margin: 20px 0;
+  padding-top: 1.5rem;
   line-height: 1.5rem;
+  background-color: #395f75;
+  color: white;
+  font-size: 14px;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}
+
+.contact img {
+  margin-right: 10px;
+}
+
+.email,
+.github,
+.linkedin {
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 560px) {
+  footer {
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+  }
+}
+
+/* ==========item-detail============ */
+.food_name {
+  text-align: center;
+  font-size: 24px;
+  margin: 2rem 0;
 }

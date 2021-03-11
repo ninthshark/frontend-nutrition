@@ -17,7 +17,7 @@ const totalPage = document.querySelector(".total-page");
 let localResult = [];
 let page = 0;
 let current_page = 1;
-let items_per_page = 20;
+let items_per_page = 15;
 let total_page = 0;
 
 function displayResult(data, items) {

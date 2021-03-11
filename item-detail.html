@@ -8,15 +8,60 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <a href="/">Home</a>
-    <h4 class="food_name">Ingredient</h4>
-    <h4 id="item-id"></h4>
-    <table>
-      <tr>
-        <th>What</th>
-        <th>How much?</th>
-      </tr>
-    </table>
+    <div class="container">
+      <nav>
+        <div class="nav-item logo">
+          <a href="/">
+            <img style="width: 100%" src="./image/foodle-logo.png" alt="logo" />
+          </a>
+        </div>
+        <div class="nav-wrapper">
+          <div class="nav-item"><a href="/api.html">API</a></div>
+          <div class="nav-item"><a href="/about">About</a></div>
+        </div>
+      </nav>
+      <div class="nutrient-info">
+        <h4 class="food_name">Ingredient</h4>
+        <table>
+          <tr>
+            <th>Macro/Micro</th>
+            <th>Quantity</th>
+          </tr>
+        </table>
+      </div>
+    </section>
+    <section class="info">
+      <h5>Data Values</h5>
+      <p>
+        Nutrient values are expressed per 100g of the food except in the case
+        of alcoholic beverages which are presented per 100ml.
+      </p>
+      <p>A trace value for a nutrient is represented by Tr.</p>
+      <p>
+        Where a nutrient is present in significant quantities, but there is no
+        reliable information on the amount, the value is represented by N.
+      </p>
+    </section>
+    <footer>
+      <div>Created by Kiattisak Dujda &#169;2021</div>
+        <div class="contact">
+          <div class="email">
+            <img src="./image/envelope-solid-24.png" alt="email" />
+            <a href="mailto:kiattisak.dujda@gmail.com"
+              >kiattisak.dujda@gmail.com</a
+            >
+          </div>
+          <div class="github">
+            <img src="./image/github-logo-24.png" alt="github" />
+            <a href="https://github.com/ninthshark">Github</a>
+          </div>
+          <div class="linkedin">
+            <img src="./image/linkedin-square-logo-24.png" alt="Linkedin" />
+            <a href="https://www.linkedin.com/in/kiattisak-dujda/">LinkedIn</a>
+          </div>
+        </div>
+    </footer>
+    </div>
 
     <script>
       // window.onload = localStorage.getItem("itemdetail");
