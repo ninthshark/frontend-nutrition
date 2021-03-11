@@ -49,8 +49,6 @@ form.addEventListener("submit", (e) => {
 
   const text = searchTerm.value.trim();
 
-  // if (text === "") return;
-
   const result = async () => {
     const response = await fetch(`${mainUrl}${text}`);
     const data = await response.json();
@@ -59,15 +57,15 @@ form.addEventListener("submit", (e) => {
     // copy response locally
     localResult = [...data];
 
+    resultList.innerHTML = "";
     resultFound.style.display = "block";
     resultFound.innerText = `About: ${data.length} results`;
 
     displayResult(localResult, items_per_page);
 
-    // searchTerm.value = "";
     searchTerm.focus();
   };
-
+  resultList.innerHTML = `<div class="loader"></div>`;
   result();
   first.disabled = previous.disabled = true;
   last.disabled = next.disabled = false;
@@ -88,7 +86,6 @@ function getItemDetail(id) {
   };
   detail();
   setInterval(() => {
-    // const itemDetail = JSON.parse(localStorage.getItem("itemdetail"));
     window.location.href = `item-detail.html`;
   }, 500);
 }
